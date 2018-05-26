@@ -44,7 +44,7 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
       break;
     case miningNotify:
       {
-        let index = -1;
+        var index = -1;
         extend(workObject, {
           jobId: jsonData.params[++index],
           prevhash: jsonData.params[++index],
