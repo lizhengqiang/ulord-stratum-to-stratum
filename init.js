@@ -132,7 +132,8 @@ stratumServer.on('started', function () {
 
     }).on('subscription', function (params, resultCallback) {
         console.log('subscription', params)
-
+        resultCallback(null, extraNonce)
+        this.sendMiningJob(currentWork.params)
 
     }).on('login', function (params, resultCallback) {
         console.log('login', params)
