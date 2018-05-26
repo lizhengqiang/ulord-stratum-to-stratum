@@ -55,6 +55,8 @@ function Client() {
     };
   }
 
+  this.start = start;
+  return this
 };
 
 module.exports = (options) => new Client().start(options);
