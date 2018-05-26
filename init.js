@@ -113,7 +113,7 @@ stratumServer.on('started', function () {
 
 
 }).on('client.connected', function (client) {
-    console.log('connected', client.socket.localPort, );
+    console.log('connected', client.socket.localPort);
     // if (typeof (varDiff[client.socket.localPort]) !== 'undefined') {
     //     varDiff[client.socket.localPort].manageClient(client);
     // }
