@@ -46,6 +46,7 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
       {
         var index = -1;
         extend(workObject, {
+          params:jsonData.params,
           jobId: jsonData.params[++index],
           prevhash: jsonData.params[++index],
           coinb1: jsonData.params[++index],
