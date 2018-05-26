@@ -1,10 +1,10 @@
 var subscribe = require('./messageContants').subscribe;
 
-module.exports = (client, { port, server, onConnect }) => {
-  client.connect(port, server, () => {
+module.exports = function (client, options) {
+  client.connect(options.port, options.server, () => {
     client.write(subscribe);
-    if (onConnect) {
-      onConnect();
+    if (options.onConnect) {
+      options.onConnect();
     }
   });
 };
