@@ -102,13 +102,13 @@ var options = {
     }
 
 };
-_this.stratumServer = new stratum.Server(options, function () {
+var stratumServer = new stratum.Server(options, function () {
     console.log(arguments)
 });
 
-_this.stratumServer.on('started', function () {
+stratumServer.on('started', function () {
     options.initStats.stratumPorts = Object.keys(options.ports);
-    _this.stratumServer.broadcastMiningJobs(_this.jobManager.currentJob.getJobParams());
+    stratumServer.broadcastMiningJobs(jobManager.currentJob.getJobParams());
     finishedCallback();
 
 }).on('broadcastTimeout', function () {
@@ -116,20 +116,20 @@ _this.stratumServer.on('started', function () {
 
     GetBlockTemplate(function (error, rpcData, processedBlock) {
         if (error || processedBlock) return;
-        _this.jobManager.updateCurrentJob(rpcData);
+        jobManager.updateCurrentJob(rpcData);
     });
 
 }).on('client.connected', function (client) {
-    if (typeof (_this.varDiff[client.socket.localPort]) !== 'undefined') {
-        _this.varDiff[client.socket.localPort].manageClient(client);
+    if (typeof (varDiff[client.socket.localPort]) !== 'undefined') {
+        varDiff[client.socket.localPort].manageClient(client);
     }
 
     client.on('difficultyChanged', function (diff) {
-        _this.emit('difficultyUpdate', client.workerName, diff);
+        emit('difficultyUpdate', client.workerName, diff);
 
     }).on('subscription', function (params, resultCallback) {
 
-        var extraNonce = _this.jobManager.extraNonceCounter.next();
+        var extraNonce = jobManager.extraNonceCounter.next();
 
         resultCallback(null,
             extraNonce
@@ -141,11 +141,11 @@ _this.stratumServer.on('started', function () {
             this.sendDifficulty(8);
         }
 
-        this.sendMiningJob(_this.jobManager.currentJob.getJobParams());
+        this.sendMiningJob(jobManager.currentJob.getJobParams());
 
     }).on('login', function (params, resultCallback) {
 
-        var extraNonce = _this.jobManager.extraNonceCounter.next();
+        var extraNonce = jobManager.extraNonceCounter.next();
         resultCallback(null, extraNonce);
 
         if (typeof (options.ports[client.socket.localPort]) !== 'undefined' && options.ports[client.socket.localPort].diff) {
@@ -157,14 +157,14 @@ _this.stratumServer.on('started', function () {
             this.sendDifficulty(8);
         }
 
-        /* this.sendMiningJob(_this.jobManager.currentJob.getJobParams()); */
-        this.sendMiningJob(_this.jobManager.currentJob.getJobParams());
+        /* this.sendMiningJob(jobManager.currentJob.getJobParams()); */
+        this.sendMiningJob(jobManager.currentJob.getJobParams());
 
     }).on('submit', function (params, resultCallback) {
 
         /* console.log("diff: " + client.difficulty);*/
 
-        var result = _this.jobManager.processSecondShare(
+        var result = jobManager.processSecondShare(
             params.jobId,
             client.previousDifficulty,
             client.difficulty,
@@ -184,7 +184,7 @@ _this.stratumServer.on('started', function () {
 
         /* console.log("diff: " + client.difficulty);*/
 
-        var result = _this.jobManager.processSecondShare(
+        var result = jobManager.processSecondShare(
             params.jobId,
             client.previousDifficulty,
             client.difficulty,
@@ -232,6 +232,6 @@ _this.stratumServer.on('started', function () {
 
     }).on('triggerBan', function (reason) {
         emitWarningLog('Banned triggered for ' + client.getLabel() + ': ' + reason);
-        _this.emit('banIP', client.remoteAddress, client.workerName);
+        emit('banIP', client.remoteAddress, client.workerName);
     });
 });
