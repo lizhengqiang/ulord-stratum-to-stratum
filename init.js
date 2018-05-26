@@ -1,19 +1,5 @@
 'use strict'
 var client = require('stratum-client');
-client({
-    server: "cn.ulord-pool.com",
-    port: 7100,
-    worker: "ImProxy",
-    autoReconnectOnError: true,
-    onConnect: () => console.log('Connected to server'),
-    onClose: () => console.log('Connection closed'),
-    onError: (error) => console.log('Error', error.message),
-    onAuthorize: () => console.log('Worker authorized'),
-    onNewDifficulty: (newDiff) => console.log('New difficulty', newDiff),
-    onSubscribe: (subscribeData) => console.log('[Subscribe]', subscribeData),
-    onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
-});
-
 var stratum = require('stratum-pool/lib/stratum.js');
 var options = {
 
@@ -109,7 +95,19 @@ var stratumServer = new stratum.Server(options, function () {
 
 stratumServer.on('started', function () {
     console.log("started")
-
+    client({
+        server: "cn.ulord-pool.com",
+        port: 7100,
+        worker: "ImProxy",
+        autoReconnectOnError: true,
+        onConnect: () => console.log('Connected to server'),
+        onClose: () => console.log('Connection closed'),
+        onError: (error) => console.log('Error', error.message),
+        onAuthorize: () => console.log('Worker authorized'),
+        onNewDifficulty: (newDiff) => console.log('New difficulty', newDiff),
+        onSubscribe: (subscribeData) => console.log('[Subscribe]', subscribeData),
+        onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
+    });
 }).on('broadcastTimeout', function () {
 
 
