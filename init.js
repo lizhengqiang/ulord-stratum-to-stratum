@@ -13,7 +13,7 @@
 //     onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
 // });
 
-var stratum = require('stratum-pool');
+var stratum = require('stratum-pool/lib/stratum.js');
 var options = {
 
 
