@@ -1,12 +1,13 @@
 const extend = require('lodash/extend');
 const cloneDeep = require('lodash/cloneDeep');
-const {
-  authorizeMethod, authorize,
-  subscribeMethod,
-  miningDifficulty,
-  miningNotify,
-} = require('./messageContants');
 
+var contants = require('./messageContants');
+
+var authorizeMethod = contants.authorizeMethod;
+var authorize = contants.authorize;
+var subscribeMethod = contants.subscribeMethod;
+var miningDifficulty = contants.miningDifficulty;
+var miningNotify = contants.miningNotify;
 module.exports = (client, updatedOptions, jsonData, workObject) => {
   const key = jsonData.method || jsonData.id;
   const { error, result, params } = jsonData;
@@ -18,10 +19,10 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
     onNewMiningWork
   } = updatedOptions;
 
-	switch (key) {
-	  case authorizeMethod:
+  switch (key) {
+    case authorizeMethod:
       if (onAuthorize) onAuthorize(error, result);
-	    break;
+      break;
     case miningDifficulty:
       if (params.length > 0) {
         workObject.miningDiff = params[0];
@@ -58,7 +59,7 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
         if (onNewMiningWork) onNewMiningWork(cloneDeep(workObject));
       }
       break;
-	  default:
-	    break;
-	}
+    default:
+      break;
+  }
 };
