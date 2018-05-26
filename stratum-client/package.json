@@ -1,0 +1,115 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "stratum-client",
+        "scope": null,
+        "escapedName": "stratum-client",
+        "name": "stratum-client",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/lizhengqiang/workspaces/stratum-to-stratum"
+    ]
+  ],
+  "_from": "stratum-client@latest",
+  "_id": "stratum-client@1.0.1",
+  "_inCache": true,
+  "_location": "/stratum-client",
+  "_nodeVersion": "9.0.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/stratum-client-1.0.1.tgz_1511643472674_0.7239419363904744"
+  },
+  "_npmUser": {
+    "name": "arnabk",
+    "email": "arnab.k@gmail.com"
+  },
+  "_npmVersion": "5.5.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "stratum-client",
+    "scope": null,
+    "escapedName": "stratum-client",
+    "name": "stratum-client",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/stratum-client/-/stratum-client-1.0.1.tgz",
+  "_shasum": "a52471ebeec8627481b7b809b18b6972da77a036",
+  "_shrinkwrap": null,
+  "_spec": "stratum-client",
+  "_where": "/Users/lizhengqiang/workspaces/stratum-to-stratum",
+  "author": {
+    "name": "Arnab Karmakar"
+  },
+  "bugs": {
+    "url": "https://github.com/arnabk/stratum-client/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "description": "A NodeJS based stratum client for communication with stratum pool",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "mocha": "^4.0.1"
+  },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-QbaxfNoArvpOyFGYnVqnVX7Rc0A5llaa36pp7J0z19oJHA97ssokmgN2Bq/SS4oGhwjLhPgHVaUg8choQbfx+A==",
+    "shasum": "a52471ebeec8627481b7b809b18b6972da77a036",
+    "tarball": "https://registry.npmjs.org/stratum-client/-/stratum-client-1.0.1.tgz"
+  },
+  "engines": {
+    "node": "~v9.0.0"
+  },
+  "gitHead": "d4378e6d841e963dcb3565c128198370ea32018c",
+  "homepage": "https://github.com/arnabk/stratum-client#readme",
+  "keywords": [
+    "nodejs",
+    "stratum",
+    "mining"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "arnabk",
+      "email": "arnab.k@gmail.com"
+    }
+  ],
+  "name": "stratum-client",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnabk/stratum-client.git"
+  },
+  "scripts": {
+    "int-test": "mocha --require babel-core/register --recursive test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "~v9.0.0"
+      },
+      "pkgid": "stratum-client@1.0.1"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "~v9.0.0"
+      },
+      "pkgid": "stratum-client@1.0.1"
+    }
+  ]
+}

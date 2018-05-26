@@ -1,4 +1,4 @@
-var client = require('stratum-client');
+var client = require('./stratum-client');
 client({
     server: "cn.ulord-pool.com",
     port: 7100,
