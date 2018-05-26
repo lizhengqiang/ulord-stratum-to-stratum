@@ -107,17 +107,10 @@ var stratumServer = new stratum.Server(options, function () {
 });
 
 stratumServer.on('started', function () {
-    //options.initStats.stratumPorts = Object.keys(options.ports);
-    stratumServer.broadcastMiningJobs(jobManager.currentJob.getJobParams());
-    finishedCallback();
+
 
 }).on('broadcastTimeout', function () {
-    emitLog('No new blocks for ' + options.jobRebroadcastTimeout + ' seconds - updating transactions & rebroadcasting work');
 
-    GetBlockTemplate(function (error, rpcData, processedBlock) {
-        if (error || processedBlock) return;
-        jobManager.updateCurrentJob(rpcData);
-    });
 
 }).on('client.connected', function (client) {
     if (typeof (varDiff[client.socket.localPort]) !== 'undefined') {
@@ -129,76 +122,20 @@ stratumServer.on('started', function () {
 
     }).on('subscription', function (params, resultCallback) {
 
-        var extraNonce = jobManager.extraNonceCounter.next();
 
-        resultCallback(null,
-            extraNonce
-        );
-
-        if (typeof (options.ports[client.socket.localPort]) !== 'undefined' && options.ports[client.socket.localPort].diff) {
-            this.sendDifficulty(options.ports[client.socket.localPort].diff);
-        } else {
-            this.sendDifficulty(8);
-        }
-
-        this.sendMiningJob(jobManager.currentJob.getJobParams());
 
     }).on('login', function (params, resultCallback) {
 
-        var extraNonce = jobManager.extraNonceCounter.next();
-        resultCallback(null, extraNonce);
 
-        if (typeof (options.ports[client.socket.localPort]) !== 'undefined' && options.ports[client.socket.localPort].diff) {
-            this.sendDifficulty(options.ports[client.socket.localPort].diff);
-            /* surely we should send target instead of diff, in job params */
-            /* how to convert diff to target... */
-            /**/
-        } else {
-            this.sendDifficulty(8);
-        }
-
-        /* this.sendMiningJob(jobManager.currentJob.getJobParams()); */
-        this.sendMiningJob(jobManager.currentJob.getJobParams());
 
     }).on('submit', function (params, resultCallback) {
 
-        /* console.log("diff: " + client.difficulty);*/
 
-        var result = jobManager.processSecondShare(
-            params.jobId,
-            client.previousDifficulty,
-            client.difficulty,
-            client.remoteAddress,
-            client.socket.localPort,
-            params.name,
-            params.nTime,
-            params.nonce,
-            null,
-            null,
-            null
-        );
-
-        resultCallback(result.error, result.result ? true : null);
 
     }).on('secondSubmit', function (params, resultCallback) {
 
         /* console.log("diff: " + client.difficulty);*/
 
-        var result = jobManager.processSecondShare(
-            params.jobId,
-            client.previousDifficulty,
-            client.difficulty,
-            client.remoteAddress,
-            client.socket.localPort,
-            params.name,
-            null,
-            null,
-            client.extraNonce1,
-            params.nonce,
-            params.hash
-        );
-
-        resultCallback(result.error, result.result ? true : null);
 
     }).on('malformedMessage', function (message) {
         emitWarningLog('Malformed message from ' + client.getLabel() + ': ' + message);
