@@ -107,7 +107,7 @@ var stratumServer = new stratum.Server(options, function () {
 });
 
 stratumServer.on('started', function () {
-
+    console.log("started")
 
 }).on('broadcastTimeout', function () {
 
