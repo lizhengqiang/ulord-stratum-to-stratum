@@ -89,7 +89,7 @@ var options = {
     }
 
 };
-process.env.pools=JSON.stringify({ulord:{}})
+process.env.pools = JSON.stringify({ ulord: {} })
 var stratumServer = new stratum.Server(options, function () {
     console.log(arguments)
 });
@@ -113,10 +113,11 @@ stratumServer.on('started', function () {
 
 
 }).on('client.connected', function (client) {
-    console.log(client);
+    console.log('connected', client.socket.localPort, );
     // if (typeof (varDiff[client.socket.localPort]) !== 'undefined') {
     //     varDiff[client.socket.localPort].manageClient(client);
     // }
+
 
     client.on('difficultyChanged', function (diff) {
         emit('difficultyUpdate', client.workerName, diff);
@@ -126,7 +127,7 @@ stratumServer.on('started', function () {
 
 
     }).on('login', function (params, resultCallback) {
-
+        console.log('login', params)
 
 
     }).on('submit', function (params, resultCallback) {
