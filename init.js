@@ -114,9 +114,9 @@ stratumServer.on('started', function () {
 
 }).on('client.connected', function (client) {
     console.log(client);
-    if (typeof (varDiff[client.socket.localPort]) !== 'undefined') {
-        varDiff[client.socket.localPort].manageClient(client);
-    }
+    // if (typeof (varDiff[client.socket.localPort]) !== 'undefined') {
+    //     varDiff[client.socket.localPort].manageClient(client);
+    // }
 
     client.on('difficultyChanged', function (diff) {
         emit('difficultyUpdate', client.workerName, diff);
