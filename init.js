@@ -93,10 +93,10 @@ process.env.pools = JSON.stringify({ ulord: {} })
 var stratumServer = new stratum.Server(options, function () {
     console.log(arguments)
 });
-
+var extraNonce = ""
 stratumServer.on('started', function () {
     console.log("started")
-    var extraNonce = ""
+
     client({
         server: "cn.ulord-pool.com",
         port: 7100,
