@@ -96,6 +96,7 @@ var stratumServer = new stratum.Server(options, function () {
 
 stratumServer.on('started', function () {
     console.log("started")
+    var extraNonce = ""
     client({
         server: "cn.ulord-pool.com",
         port: 7100,
@@ -106,7 +107,10 @@ stratumServer.on('started', function () {
         onError: (error) => console.log('Error', error.message),
         onAuthorize: () => console.log('Worker authorized'),
         onNewDifficulty: (newDiff) => console.log('New difficulty', newDiff),
-        onSubscribe: (subscribeData) => console.log('[Subscribe]', subscribeData),
+        onSubscribe: (subscribeData) => {
+            console.log('[Subscribe]', subscribeData)
+            extraNonce = subscribeData.extraNonce1;
+        },
         onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
     });
 }).on('broadcastTimeout', function () {
@@ -128,6 +132,7 @@ stratumServer.on('started', function () {
 
     }).on('login', function (params, resultCallback) {
         console.log('login', params)
+        resultCallback(null, extraNonce)
 
 
     }).on('submit', function (params, resultCallback) {
