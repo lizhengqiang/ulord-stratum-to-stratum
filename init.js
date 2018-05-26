@@ -89,6 +89,7 @@ var options = {
     }
 
 };
+process.env.pools=JSON.stringify({ulord:{}})
 var stratumServer = new stratum.Server(options, function () {
     console.log(arguments)
 });
