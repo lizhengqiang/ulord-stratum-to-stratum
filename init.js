@@ -114,7 +114,7 @@ stratumServer.on('started', function () {
         },
         onNewMiningWork: (newWork) => {
             console.log('[New Work]', newWork)
-            currentWork=newWork
+            currentWork = newWork
         },
     });
 }).on('broadcastTimeout', function () {
@@ -131,7 +131,7 @@ stratumServer.on('started', function () {
         emit('difficultyUpdate', client.workerName, diff);
 
     }).on('subscription', function (params, resultCallback) {
-
+        console.log('subscription', params)
 
 
     }).on('login', function (params, resultCallback) {
