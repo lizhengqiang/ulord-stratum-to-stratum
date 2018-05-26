@@ -61,6 +61,7 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
       }
       break;
     default:
+    console.log(jsonData)
       break;
   }
 };
