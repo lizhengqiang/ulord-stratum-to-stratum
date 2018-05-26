@@ -1,3 +1,4 @@
+'use strict'
 // stratum+tcp://stratum.antpool.com
 const net = require('net');
 const extend = require('lodash/extend');
