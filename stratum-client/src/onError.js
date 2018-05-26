@@ -1,7 +1,8 @@
 const connect = require('./connect');
 
 module.exports = (client, options, error) => {
-  const { autoReconnectOnError, onError } = options;
+  const autoReconnectOnError = options.autoReconnectOnError;
+  const onError = options.onError;
   if (onError) onError(error);
 
   if (autoReconnectOnError) {
