@@ -1,4 +1,4 @@
-const { subscribe } = require('./messageContants');
+var subscribe = require('./messageContants').subscribe;
 
 module.exports = (client, { port, server, onConnect }) => {
   client.connect(port, server, () => {
