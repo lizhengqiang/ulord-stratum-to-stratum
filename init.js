@@ -107,7 +107,7 @@ var stratumServer = new stratum.Server(options, function () {
 });
 
 stratumServer.on('started', function () {
-    options.initStats.stratumPorts = Object.keys(options.ports);
+    //options.initStats.stratumPorts = Object.keys(options.ports);
     stratumServer.broadcastMiningJobs(jobManager.currentJob.getJobParams());
     finishedCallback();
 
