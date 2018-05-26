@@ -10,14 +10,14 @@ var miningDifficulty = contants.miningDifficulty;
 var miningNotify = contants.miningNotify;
 module.exports = (client, updatedOptions, jsonData, workObject) => {
   const key = jsonData.method || jsonData.id;
-  const { error, result, params } = jsonData;
-  const {
-    onAuthorize,
-    onSubscribe,
-    onNewDifficulty,
-    worker,
-    onNewMiningWork
-  } = updatedOptions;
+  var error = jsonData.error;
+  var result = jsonData.result;
+  var params = jsonData.params;
+  var onAuthorize = updatedOptions.onAuthorize;
+  var onSubscribe = updatedOptions.onSubscribe;
+  var onNewDifficulty = updatedOptions.onNewDifficulty;
+  var worker = updatedOptions.worker;
+  var onNewMiningWork = updatedOptions.onNewMiningWork;
 
   switch (key) {
     case authorizeMethod:
