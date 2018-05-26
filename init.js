@@ -1,5 +1,5 @@
-'use strict'
-var client = require('stratum-client');
+
+var client = require('./stratum-client');
 var stratum = require('stratum-pool/lib/stratum.js');
 var options = {
 
