@@ -1,3 +1,4 @@
+'use strict'
 var client = require('./stratum-client');
 client({
     server: "cn.ulord-pool.com",
