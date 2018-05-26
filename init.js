@@ -94,6 +94,7 @@ var stratumServer = new stratum.Server(options, function () {
     console.log(arguments)
 });
 var extraNonce = ""
+var currentWork = null;
 stratumServer.on('started', function () {
     console.log("started")
 
@@ -111,7 +112,10 @@ stratumServer.on('started', function () {
             console.log('[Subscribe]', subscribeData)
             extraNonce = subscribeData.extraNonce1;
         },
-        onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
+        onNewMiningWork: (newWork) => {
+            console.log('[New Work]', newWork)
+            currentWork=newWork
+        },
     });
 }).on('broadcastTimeout', function () {
 
@@ -133,7 +137,7 @@ stratumServer.on('started', function () {
     }).on('login', function (params, resultCallback) {
         console.log('login', params)
         resultCallback(null, extraNonce)
-
+        this.sendMiningJob(currentWork)
 
     }).on('submit', function (params, resultCallback) {
 
